@@ -4,6 +4,19 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('imagenes/FONDOPASTO.png');
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 76px 20px 60px;
+    overflow-x: hidden;
+}
+
 /* Barra de navegación */
 .navbar {
     position: fixed;
@@ -14,32 +27,32 @@
     background-color: #ff8c00;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     padding: 8px 0;
-    z-index: 10000;
+    z-index: 950;
 }
 
 .navbar-container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    max-width: 100%;
+    gap: 18px;
+    max-width: 850px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 16px;
 }
 
 .nav-btn {
     background-color: white;
     color: #ff8c00;
     border: none;
-    padding: 10px 24px;
+    padding: 10px 22px;
     border-radius: 999px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .nav-btn:hover {
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.88);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
 }
@@ -48,27 +61,23 @@
     transform: translateY(0);
 }
 
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background-image: url('imagenes/FONDOPASTO.png');
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    min-height: 100vh;
-    padding: 70px 20px 60px;
+.btn-Biopochito {
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    width: clamp(170px, 20vw, 300px);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 900;
 }
 
 .muneco-lateral {
-    position: fixed;
-    right: -95px;
-    bottom: 24px;
-    width: clamp(170px, 20vw, 300px);
+    width: 100%;
     height: auto;
-    z-index: 900;
-    pointer-events: none;
-    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.28));
+    display: block;
+    filter: drop-shadow(0 18px 24px rgba(0,0,0,0.28));
 }
 
 .seccion-fondo {
@@ -260,18 +269,15 @@ body {
 }
 
 .titulo-bienvenida {
-    font-size: 3.8rem;
-    margin-bottom: 24px;
+    font-size: 2rem;
+    margin-bottom: 14px;
     line-height: 1.1;
-    font-weight: 900;
-    color: #2c2c2c;
 }
 
 .parrafo-bienvenida {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 22px;
-    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 18px;
 }
 
 .btn-descubrir {
@@ -335,12 +341,6 @@ body {
 }
 
 @media (max-width: 720px) {
-    .muneco-lateral {
-        right: -78px;
-        bottom: 14px;
-        width: 170px;
-    }
-
     .bienvenida {
         grid-template-columns: 1fr;
         padding: 20px;
@@ -383,6 +383,53 @@ h1 { margin-bottom: 8px; }
     border-color: #007bff;
 }
 
+.footer-institucional {
+    width: 100vw;
+    margin: 10px calc(50% - 50vw) -60px;
+    padding: 28px 22px 34px;
+    background-color: #ff8c00;
+    color: white;
+    box-shadow: 0 -8px 24px rgba(0,0,0,0.16);
+}
+
+.footer-contenido {
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+.footer-marca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 135px;
+    padding: 16px;
+    text-align: center;
+    background-color: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 8px;
+}
+
+.footer-marca img {
+    max-width: 180px;
+    max-height: 66px;
+    object-fit: contain;
+    padding: 6px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.footer-marca p {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    font-weight: 700;
+}
+
 /* VENTANA EMERGENTE (MODAL) */
 .modal {
     position: fixed;
@@ -390,29 +437,32 @@ h1 { margin-bottom: 8px; }
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(12, 35, 20, 0.68); /* Fondo oscuro semitransparente */
+    background:
+        radial-gradient(circle at 50% 12%, rgba(255, 190, 88, 0.26), transparent 32%),
+        rgba(18, 35, 20, 0.66);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 18px;
     z-index: 1000;
     backdrop-filter: blur(5px);
 }
 
 .modal-contenido {
     background:
-        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94)),
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)),
         url('imagenes/FONDOPASTO.png');
-    padding: 24px;
-    border: 1px solid rgba(255, 140, 0, 0.18);
+    padding: 28px;
+    border: 2px solid rgba(255, 140, 0, 0.22);
     border-radius: 18px;
     max-width: 460px;
-    width: 90%;
-    max-height: calc(100vh - 40px);
+    width: min(90vw, 460px);
+    max-height: calc(100vh - 36px);
     overflow-y: auto;
     position: relative;
     text-align: center;
-    box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.34);
+    animation: modalEntrada 0.22s ease-out;
 }
 
 .btn-cerrar {
@@ -427,22 +477,31 @@ h1 { margin-bottom: 8px; }
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    color: #767676;
+    color: #6b6b6b;
     box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+    transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-cerrar:hover { color: #333; transform: translateY(-1px); }
+
+.btn-cerrar:hover {
+    color: #2e2e2e;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+}
 
 .modal-imagen-marco {
-    width: min(210px, 62vw);
+    width: min(225px, 62vw);
     aspect-ratio: 1;
-    margin: 4px auto 18px;
-    padding: 10px;
+    margin: 2px auto 20px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     background:
-        radial-gradient(circle at 35% 25%, #fff8df 0 22%, #f0c15a 23% 38%, #7fbf4d 39% 100%);
+        radial-gradient(circle at 35% 25%, #fff9dc 0 22%, #f4c45d 23% 40%, #78b84b 41% 100%);
     box-shadow:
-        0 14px 30px rgba(20, 77, 33, 0.22),
-        inset 0 0 0 8px rgba(255,255,255,0.55);
+        0 16px 35px rgba(27, 90, 37, 0.24),
+        inset 0 0 0 8px rgba(255,255,255,0.58);
 }
 
 #modal-imagen {
@@ -452,22 +511,28 @@ h1 { margin-bottom: 8px; }
     object-fit: contain;
     border: 5px solid white;
     border-radius: 50%;
+    background-color: #fffaf0;
     box-shadow: 0 8px 18px rgba(0,0,0,0.2);
 }
 
 #modal-titulo {
     margin-bottom: 14px;
     color: #2f2f2f;
-    font-size: 23px;
+    font-size: 24px;
     line-height: 1.18;
     font-weight: 900;
 }
 
 #modal-descripcion {
-    color: #555;
+    color: #4f4f4f;
     font-size: 15px;
-    line-height: 1.58;
+    line-height: 1.62;
     margin-bottom: 24px;
+    text-align: left;
+    background-color: rgba(255,255,255,0.72);
+    border-left: 4px solid #ff8c00;
+    border-radius: 10px;
+    padding: 14px 16px;
 }
 
 /* Controles de reproducción */
@@ -479,7 +544,7 @@ h1 { margin-bottom: 8px; }
 }
 
 .btn-principal {
-    background: linear-gradient(135deg, #24a947, #16803b);
+    background: linear-gradient(135deg, #26a947, #14733a);
     color: white;
     border: none;
     padding: 12px 25px;
@@ -522,3 +587,58 @@ h1 { margin-bottom: 8px; }
 
 /* Clases utilitarias para ocultar elementos */
 .oculto { display: none !important; }
+
+@keyframes modalEntrada {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding-top: 68px;
+    }
+
+    .navbar-container {
+        gap: 8px;
+        padding: 0 10px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+        font-size: 0.88rem;
+    }
+
+    .btn-Biopochito {
+        right: 10px;
+        bottom: 12px;
+        width: 150px;
+    }
+
+    .modal-contenido {
+        padding: 22px 18px;
+    }
+
+    #modal-titulo {
+        font-size: 21px;
+    }
+
+    #modal-descripcion {
+        font-size: 14px;
+        padding: 12px;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-institucional {
+        padding-bottom: 150px;
+    }
+}

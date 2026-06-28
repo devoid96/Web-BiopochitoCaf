@@ -12,17 +12,18 @@ const btnPausar = document.getElementById('btn-pausar');
 const btnReiniciar = document.getElementById('btn-reiniciar');
 
 // Escuchar clics en los elementos de la lista, los botones circulares y los botones de carteles
-document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn').forEach(botonLista => {
+document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito').forEach(botonLista => {
     botonLista.addEventListener('click', () => {
         // Extraer los datos guardados en el botón HTML
         const archivoAudio = botonLista.getAttribute('data-audio');
         const titulo = botonLista.getAttribute('data-titulo');
         const descripcion = botonLista.getAttribute('data-desc');
+        const imagenPreview = botonLista.getAttribute('data-preview-img');
         const imagenBoton = botonLista.querySelector('img');
 
         // Asignar los textos e incorporar la ruta del archivo .wav
         if (imagenBoton) {
-            modalImagen.src = imagenBoton.getAttribute('src');
+            modalImagen.src = imagenPreview || imagenBoton.getAttribute('src');
             modalImagen.alt = imagenBoton.getAttribute('alt') || titulo;
         }
         modalTitulo.textContent = titulo;
