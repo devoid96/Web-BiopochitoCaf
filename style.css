@@ -4,6 +4,50 @@
     box-sizing: border-box;
 }
 
+/* Barra de navegación */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background-color: #ff8c00;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 8px 0;
+    z-index: 10000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.nav-btn {
+    background-color: white;
+    color: #ff8c00;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-btn:active {
+    transform: translateY(0);
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
     background-image: url('imagenes/FONDOPASTO.png');
@@ -13,7 +57,7 @@ body {
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 20px 20px 60px;
+    padding: 70px 20px 60px;
 }
 
 .seccion-fondo {
@@ -205,15 +249,18 @@ body {
 }
 
 .titulo-bienvenida {
-    font-size: 2rem;
-    margin-bottom: 14px;
+    font-size: 3.8rem;
+    margin-bottom: 24px;
     line-height: 1.1;
+    font-weight: 900;
+    color: #2c2c2c;
 }
 
 .parrafo-bienvenida {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 18px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 22px;
+    color: #555;
 }
 
 .btn-descubrir {
