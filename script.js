@@ -1,6 +1,7 @@
 // Captura de elementos de la interfaz
 const modal = document.getElementById('modal-reproductor');
 const btnCerrar = document.getElementById('btn-cerrar');
+const modalImagen = document.getElementById('modal-imagen');
 const modalTitulo = document.getElementById('modal-titulo');
 const modalDescripcion = document.getElementById('modal-descripcion');
 
@@ -17,8 +18,13 @@ document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn').forEach(botonL
         const archivoAudio = botonLista.getAttribute('data-audio');
         const titulo = botonLista.getAttribute('data-titulo');
         const descripcion = botonLista.getAttribute('data-desc');
+        const imagenBoton = botonLista.querySelector('img');
 
         // Asignar los textos e incorporar la ruta del archivo .wav
+        if (imagenBoton) {
+            modalImagen.src = imagenBoton.getAttribute('src');
+            modalImagen.alt = imagenBoton.getAttribute('alt') || titulo;
+        }
         modalTitulo.textContent = titulo;
         modalDescripcion.textContent = descripcion;
         audio.src = archivoAudio;
