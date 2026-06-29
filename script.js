@@ -21,6 +21,7 @@ document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito
         const imagenPreview = botonLista.getAttribute('data-preview-img');
         const imagenBoton = botonLista.querySelector('img');
         const usaVistaLateral = botonLista.classList.contains('circulo-btn') || botonLista.classList.contains('cartel-btn');
+        const usaPreviewFase = imagenPreview && imagenPreview.includes('Fases imagenes previ/');
 
         // Asignar los textos e incorporar la ruta del archivo .wav
         if (imagenBoton) {
@@ -28,6 +29,8 @@ document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito
             modalImagen.alt = imagenBoton.getAttribute('alt') || titulo;
         }
         modal.querySelector('.modal-contenido').classList.toggle('modal-contenido-circular', usaVistaLateral);
+        modalImagen.classList.toggle('modal-imagen-preview-fase', usaPreviewFase);
+        modalImagen.parentElement.classList.toggle('modal-imagen-marco-preview-fase', usaPreviewFase);
         modalTitulo.textContent = titulo;
         modalDescripcion.textContent = descripcion;
         audio.src = archivoAudio;
