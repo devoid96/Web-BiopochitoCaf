@@ -20,12 +20,14 @@ document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito
         const descripcion = botonLista.getAttribute('data-desc');
         const imagenPreview = botonLista.getAttribute('data-preview-img');
         const imagenBoton = botonLista.querySelector('img');
+        const usaVistaLateral = botonLista.classList.contains('circulo-btn') || botonLista.classList.contains('cartel-btn');
 
         // Asignar los textos e incorporar la ruta del archivo .wav
         if (imagenBoton) {
             modalImagen.src = imagenPreview || imagenBoton.getAttribute('src');
             modalImagen.alt = imagenBoton.getAttribute('alt') || titulo;
         }
+        modal.querySelector('.modal-contenido').classList.toggle('modal-contenido-circular', usaVistaLateral);
         modalTitulo.textContent = titulo;
         modalDescripcion.textContent = descripcion;
         audio.src = archivoAudio;
