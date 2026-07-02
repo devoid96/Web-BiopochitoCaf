@@ -519,7 +519,7 @@ h1 { margin-bottom: 8px; }
 .footer-institucional {
         width: 100vw;
         margin: 0;
-        padding: 90px 0 100px;
+        padding: 20px 0 5px;
         background: linear-gradient(180deg, rgba(121, 52, 0, 0.99), rgba(121, 52, 0, 0.99));
         color: white;
         position: relative;
@@ -944,6 +944,16 @@ h1 { margin-bottom: 8px; }
     box-shadow:
         0 16px 35px rgba(27, 90, 37, 0.24),
         inset 0 0 0 8px rgba(255,255,255,0.58);
+}
+
+.modal-imagen-caption {
+    margin: 12px auto 0;
+    color: #2f2f2f;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 .modal-imagen-marco-preview-fase {
