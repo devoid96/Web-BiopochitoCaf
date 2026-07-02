@@ -87,3 +87,30 @@ function resetearYcerrar() {
     audio.currentTime = 0;
     modal.classList.add('oculto');
 }
+
+// --- SPLASH: entrada suave, visible 3s, salida suave ---
+document.addEventListener('DOMContentLoaded', () => {
+    const splash = document.getElementById('splash-overlay');
+    if (!splash) return;
+    const visibleMs = 3000; // tiempo que permanece visible (ms)
+
+    // Mostrar inmediatamente SIN transición: usar clase temporal no-transition
+    splash.classList.remove('splash-hidden');
+    splash.classList.add('splash-visible', 'no-transition');
+
+    // Forzar reflow y luego reactivar transiciones para la salida posterior
+    // (removemos la clase no-transition en el siguiente frame)
+    requestAnimationFrame(() => {
+        splash.classList.remove('no-transition');
+    });
+
+    // Mantener visible por visibleMs, luego iniciar salida (con transición)
+    setTimeout(() => {
+        splash.classList.remove('splash-visible');
+        splash.classList.add('splash-hidden');
+
+        splash.addEventListener('transitionend', () => {
+            if (splash && splash.parentElement) splash.parentElement.removeChild(splash);
+        }, { once: true });
+    }, visibleMs);
+});
