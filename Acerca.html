@@ -6,21 +6,12 @@
     <title>Acerca de - Ciclo Producción del Café</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="pagina-equipo">
 
     <!-- SPLASH: imagen de bienvenida al inicio del proyecto -->
     <div id="splash-overlay" class="splash-overlay">
         <img src="imagenes/BIOPOCHITOINICIO.jpg" alt="Biopochito inicio" class="splash-image">
     </div>
-
-    <button class="btn-Biopochito" type="button" aria-label="Botón Biopochito" data-audio="Audacity/biopochito.wav"
-    data-titulo="¡Hola! Soy Biopochito"
-    data-desc="Bienvenido. Yo seré tu guía durante todo el recorrido del ciclo del café. ¡Haz clic en iniciar para escucharme!"
-    data-preview-img="imagenes/Biopochito.png">
-        <img class="muneco-lateral"
-             src="imagenes/biopochito-chapolero.png"
-             alt="Biopochito">
-    </button>
 
     <nav class="navbar">
         <div class="navbar-container">
@@ -54,25 +45,49 @@
         </div>
     </section>
 
-    <section class="hero">
-        <div class="contenedor tarjetas-presentacion">
-            <h2 class="titulo-bienvenida">Equipo</h2>
-            <div class="grid-tarjetas">
-                <article class="tarjeta-presentacion">
-                    <h3>Nombre Apellido</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </article>
-                <article class="tarjeta-presentacion">
-                    <h3>Nombre Apellido</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </article>
-                <article class="tarjeta-presentacion">
-                    <h3>Nombre Apellido</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </article>
+    <main class="equipo-page">
+        <section class="equipo-hero" aria-labelledby="equipo-titulo">
+            <div class="equipo-panel">
+                <header class="equipo-header">
+                    <span class="equipo-icono" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                            <path d="M12 3l2.8 5.7 6.3.9-4.6 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2-4.6-4.4 6.3-.9L12 3z"></path>
+                        </svg>
+                    </span>
+                    <h1 id="equipo-titulo">Equipo</h1>
+                    <div class="equipo-linea" aria-hidden="true"></div>
+                    <p class="equipo-subtitulo">Facultad de Ingeniería — Programa Ingeniería de Sistemas</p>
+                    <p class="equipo-subtitulo">Centro Internacional de Ciencia Verde para Latinoamérica y el Caribe — IGSCLAC</p>
+                </header>
+
+                <div id="equipo-grid" class="equipo-grid" aria-label="Integrantes del equipo"></div>
+
+                <section class="equipo-franja" aria-label="Mensaje institucional">
+                    <div class="equipo-franja-bloque">
+                        <span class="equipo-franja-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                                <path d="M12 3a9 9 0 0 0-9 9c0 4.8 3.9 8.8 8.8 9h.4c4.8 0 8.8-3.9 8.8-8.8A9 9 0 0 0 12 3zm0 2.3a6.7 6.7 0 0 1 6.7 6.7c0 3.5-2.7 6.4-6.1 6.7l-1.2-2.1-1.1 2.1A6.7 6.7 0 0 1 5.3 12 6.7 6.7 0 0 1 12 5.3z"></path>
+                            </svg>
+                        </span>
+                        <p>Trabajamos juntos por la sostenibilidad, la innovación y el desarrollo de soluciones tecnológicas para nuestra región.</p>
+                    </div>
+                    <div class="equipo-franja-separador" aria-hidden="true"></div>
+                    <div class="equipo-franja-bloque equipo-franja-bloque--destacado">
+                        <span class="equipo-franja-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" role="img" focusable="false" aria-hidden="true">
+                                <path d="M12 2c-1.3 1.8-2 3.4-2 4.8 0 1.7 1.1 2.9 2 4.1.9-1.2 2-2.4 2-4.1 0-1.4-.7-3-2-4.8zm0 7.9c-2.6 0-5 1.6-6.1 4.1A6.9 6.9 0 0 0 12 22a6.9 6.9 0 0 0 6.1-8c-1.1-2.5-3.5-4.1-6.1-4.1z"></path>
+                            </svg>
+                        </span>
+                        <div>
+                            <h2>Ciencia Verde</h2>
+                            <p>para un futuro mejor</p>
+                        </div>
+                    </div>
+                </section>
+
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer class="footer-institucional">
         <div class="footer-contenido">
@@ -109,5 +124,7 @@
             <p class="footer-bottom-text">© 2026 UCEVA. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
