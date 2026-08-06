@@ -87,15 +87,14 @@ body {
 }
 
 body.pagina-equipo {
-    display: block;
+    display: flex;
+    flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
+    min-height: 100vh;
     padding: 0;
     background-color: var(--fondo-crema);
     background-image: url('imagenes/FONDOPASTO.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     position: relative;
 }
 
@@ -104,8 +103,8 @@ body.pagina-equipo::before {
     position: fixed;
     inset: 0;
     background:
-        linear-gradient(180deg, rgba(11, 39, 25, 0.72), rgba(11, 39, 25, 0.60)),
-        radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 58%);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.06), transparent 58%);
     pointer-events: none;
     z-index: 0;
 }
@@ -117,24 +116,23 @@ body.pagina-equipo > * {
 
 body.pagina-equipo .equipo-page {
     width: 100%;
-    padding: 112px 0 44px;
+    padding: 15px 0 16px;
 }
 
 body.pagina-equipo .equipo-hero {
-    width: min(1250px, calc(100% - 32px));
+    width: min(1120px, calc(100% - 32px));
     margin: 0 auto;
 }
 
 body.pagina-equipo .equipo-panel {
     position: relative;
     overflow: hidden;
-    padding: clamp(24px, 3vw, 36px);
+    padding: clamp(20px, 2.4vw, 30px);
     border-radius: 32px;
     border: 1px solid rgba(220, 229, 221, 0.82);
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(248, 246, 241, 0.96));
     box-shadow: var(--sombra-panel);
-    backdrop-filter: blur(8px);
 }
 
 body.pagina-equipo .equipo-panel::after {
@@ -382,6 +380,18 @@ body.pagina-equipo .equipo-panel > * {
     margin-bottom: 30px;
 }
 
+body.pagina-equipo .hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: min(850px, calc(100% - 24px));
+    max-width: 850px;
+    align-self: center;
+    min-height: 0;
+    padding: 34px 12px 20px;
+    margin: 0;
+}
+
 .grid-tarjetas {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -528,17 +538,17 @@ body.pagina-equipo .equipo-subtitulo + .equipo-subtitulo {
 body.pagina-equipo .equipo-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-top: 28px;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 body.pagina-equipo .equipo-card {
     display: grid;
-    grid-template-columns: 82px minmax(0, 1fr);
-    gap: 16px;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 12px;
     align-items: center;
     min-height: 100%;
-    padding: 18px 18px 18px 16px;
+    padding: 14px 14px 14px 12px;
     border-radius: 20px;
     border: 1px solid rgba(220, 229, 221, 0.9);
     background: linear-gradient(180deg, #ffffff, #fdfcf8);
@@ -553,8 +563,8 @@ body.pagina-equipo .equipo-card:hover {
 }
 
 body.pagina-equipo .equipo-card-icon {
-    width: 66px;
-    height: 66px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     display: grid;
     place-items: center;
@@ -586,8 +596,8 @@ body.pagina-equipo .equipo-card-icon--estudiante {
 }
 
 body.pagina-equipo .equipo-card-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
 }
 
 body.pagina-equipo .equipo-card-body {
@@ -597,7 +607,7 @@ body.pagina-equipo .equipo-card-body {
 body.pagina-equipo .equipo-card-body h3 {
     margin: 0;
     color: var(--verde-oscuro);
-    font-size: clamp(1.08rem, 1.45vw, 1.28rem);
+    font-size: clamp(1rem, 1.25vw, 1.16rem);
     font-weight: 700;
     line-height: 1.28;
     letter-spacing: -0.01em;
@@ -608,10 +618,10 @@ body.pagina-equipo .equipo-card-role {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    margin-top: 10px;
-    padding: 7px 12px;
+    margin-top: 8px;
+    padding: 6px 10px;
     border-radius: 999px;
-    font-size: 0.83rem;
+    font-size: 0.78rem;
     font-weight: 700;
     line-height: 1;
     letter-spacing: 0.01em;
@@ -633,11 +643,11 @@ body.pagina-equipo .equipo-card-role--asesor {
 }
 
 body.pagina-equipo .equipo-franja {
-    margin-top: 24px;
-    padding: 20px 22px;
+    margin-top: 18px;
+    padding: 16px 18px;
     display: grid;
     grid-template-columns: minmax(0, 1.25fr) auto minmax(0, 0.95fr);
-    gap: 18px;
+    gap: 14px;
     align-items: center;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.75);
@@ -648,13 +658,13 @@ body.pagina-equipo .equipo-franja {
 body.pagina-equipo .equipo-franja-bloque {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     min-width: 0;
 }
 
 body.pagina-equipo .equipo-franja-icon {
-    width: 46px;
-    height: 46px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: grid;
     place-items: center;
@@ -1437,7 +1447,7 @@ h1 { margin-bottom: 8px; }
 
 @media (max-width: 760px) {
     body.pagina-equipo .equipo-page {
-        padding-top: 128px;
+        padding-top: 18px;
     }
 
     body.pagina-equipo .equipo-grid {
@@ -1469,7 +1479,7 @@ h1 { margin-bottom: 8px; }
 
 @media (max-width: 520px) {
     body.pagina-equipo .equipo-panel {
-        padding: 20px 16px 18px;
+        padding: 18px 14px 16px;
         border-radius: 24px;
     }
 
@@ -1478,17 +1488,17 @@ h1 { margin-bottom: 8px; }
     }
 
     body.pagina-equipo .equipo-card {
-        grid-template-columns: 68px minmax(0, 1fr);
-        padding: 16px;
+        grid-template-columns: 64px minmax(0, 1fr);
+        padding: 13px;
     }
 
     body.pagina-equipo .equipo-card-icon {
-        width: 60px;
-        height: 60px;
+        width: 52px;
+        height: 52px;
     }
 
     body.pagina-equipo .equipo-franja {
-        padding: 18px 16px;
+        padding: 16px 14px;
     }
 }
 
@@ -1504,6 +1514,11 @@ h1 { margin-bottom: 8px; }
 @media (max-width: 820px) {
     body {
         padding: 76px 12px 40px;
+    }
+
+    body.pagina-equipo .hero {
+        min-height: 0;
+        padding: 26px 12px 16px;
     }
 
     .btn-Biopochito {

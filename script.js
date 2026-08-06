@@ -187,6 +187,18 @@ function renderizarEquipo() {
 document.addEventListener('DOMContentLoaded', () => {
     const splash = document.getElementById('splash-overlay');
     if (!splash) return;
+    const splashImage = splash.querySelector('.splash-image');
+    const splashPortraitSrc = 'imagenes/BIOPOCHITOINICIO vertical.jpg';
+    const splashLandscapeSrc = 'imagenes/BIOPOCHITOINICIO.jpg';
+
+    if (splashImage) {
+        const isPortrait = window.matchMedia('(orientation: portrait)').matches;
+        const nextSrc = isPortrait ? splashPortraitSrc : splashLandscapeSrc;
+        if (splashImage.getAttribute('src') !== nextSrc) {
+            splashImage.setAttribute('src', nextSrc);
+        }
+    }
+
     const visibleMs = 3000; // tiempo que permanece visible (ms)
 
     // Mostrar inmediatamente SIN transición: usar clase temporal no-transition
