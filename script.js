@@ -223,3 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', renderizarEquipo);
+
+// --- Efecto de navbar transparente al hacer scroll ---
+const navbar = document.querySelector('.navbar');
+const scrollThreshold = 50; // píxeles antes de activar la transparencia
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+        navbar.classList.add('navbar-transparent');
+    } else {
+        navbar.classList.remove('navbar-transparent');
+    }
+}, { passive: true });
