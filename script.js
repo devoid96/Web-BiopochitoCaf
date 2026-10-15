@@ -58,6 +58,7 @@ const equipoData = [
     { nombre: 'Daniela Gomez Rios', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
     { nombre: 'Miguel Ángel Pérez Ojeda', cargo: 'Community manager', tipo: 'colaborador' },
     { nombre: 'Jerónimo Taborda Quiñones', cargo: 'Colaborador', tipo: 'colaborador' },
+    { nombre: 'Diego Ponse', cargo: 'colaborador', tipo: 'colaborador' }
 ];
 
 
