@@ -58,7 +58,7 @@ const equipoData = [
     { nombre: 'Daniela Gomez Rios', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
     { nombre: 'Miguel Ángel Pérez Ojeda', cargo: 'Community manager', tipo: 'colaborador' },
     { nombre: 'Jerónimo Taborda Quiñones', cargo: 'Colaborador', tipo: 'colaborador' },
-    { nombre: 'Diego Ponse', cargo: 'colaborador', tipo: 'colaborador' }
+    { nombre: 'Diego Ponse', cargo: 'Doblaje', tipo: 'colaborador' }
 ];
 
 
@@ -166,8 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const splash = document.getElementById('splash-overlay');
     if (!splash) return;
     const splashImage = splash.querySelector('.splash-image');
-    const splashPortraitSrc = 'imagenes/Biopochito vista movil.jpg';
-    const splashLandscapeSrc = 'imagenes/Logo inicial biopochito caf hd.jpg';
+    const splashPortraitSrc = 'imagenes/Bienvenido a Biopochito vertical.jpeg';
+    const splashLandscapeSrc = 'imagenes/Bienvenido a Biopochito horizontal.jpeg';
 
     if (splashImage) {
         const isPortrait = window.matchMedia('(orientation: portrait)').matches;
@@ -206,12 +206,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', renderizarEquipo);
 
-// Desvanecer a Biopochito gradualmente al llegar a la última estación.
+// Desvanecer a Biopochito y botón lateral gradualmente al llegar a la última estación.
 const btnBiopochito = document.querySelector('.btn-Biopochito');
+const btnAltacalidad = document.querySelector('.btn-altacalidad');
 const ultimaEstacion = document.querySelector('.circulo-btn-16');
 
 function actualizarVisibilidadBiopochito() {
-    if (!btnBiopochito || !ultimaEstacion) {
+    if (!ultimaEstacion) {
         return;
     }
 
@@ -223,10 +224,19 @@ function actualizarVisibilidadBiopochito() {
         (inicioDesvanecimiento - finalDesvanecimiento)
     ));
 
-    btnBiopochito.style.opacity = String(1 - progreso);
-    btnBiopochito.style.visibility = progreso >= 1 ? 'hidden' : 'visible';
-    btnBiopochito.style.pointerEvents = progreso >= 1 ? 'none' : 'auto';
-    btnBiopochito.style.transform = `translateY(-50%) translateX(${28 * progreso}px) scale(${1 - (0.06 * progreso)})`;
+    if (btnBiopochito) {
+        btnBiopochito.style.opacity = String(1 - progreso);
+        btnBiopochito.style.visibility = progreso >= 1 ? 'hidden' : 'visible';
+        btnBiopochito.style.pointerEvents = progreso >= 1 ? 'none' : 'auto';
+        btnBiopochito.style.transform = `translateX(${28 * progreso}px) scale(${1 - (0.06 * progreso)})`;
+    }
+
+    if (btnAltacalidad) {
+        btnAltacalidad.style.opacity = String(1 - progreso);
+        btnAltacalidad.style.visibility = progreso >= 1 ? 'hidden' : 'visible';
+        btnAltacalidad.style.pointerEvents = 'none';
+        btnAltacalidad.style.transform = `translateX(${-28 * progreso}px) scale(${1 - (0.06 * progreso)})`;
+    }
 }
 
 window.addEventListener('scroll', actualizarVisibilidadBiopochito, { passive: true });

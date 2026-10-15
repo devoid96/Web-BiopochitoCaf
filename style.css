@@ -22,15 +22,23 @@
 /* Small-screen override: make Biopochito larger on narrow devices */
 @media (max-width: 520px) {
     .btn-Biopochito {
-        width: clamp(150px, 38vw, 240px);
+        width: clamp(165px, 40vw, 250px);
         right: 0;
-        top: 42%;
-        bottom: auto;
-        transform: translateY(-50%);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 55px);
+        top: auto;
+        transform: none;
     }
 
     .muneco-lateral {
-        max-width: 240px;
+        max-width: 250px;
+    }
+
+    .btn-altacalidad {
+        width: clamp(95px, 24vw, 140px);
+        left: calc(env(safe-area-inset-left, 0px) + 8px);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+        top: auto;
+        transform: none;
     }
 }
 
@@ -238,15 +246,15 @@ body.pagina-equipo .equipo-panel>* {
 .btn-Biopochito {
     position: fixed;
     right: -8px;
-    top: 45%;
-    transform: translateY(-50%);
-    width: clamp(280px, 28vw, 520px);
+    bottom: clamp(60px, 8vh, 100px);
+    top: auto;
+    transform: none;
+    width: clamp(180px, 18vw, 320px);
     background: transparent;
     border: none;
     padding: 0;
     cursor: pointer;
     z-index: 100;
-    animation: biopochitoEntrada 0.9s ease-out both;
     transition: opacity 120ms linear, visibility 120ms linear, transform 120ms linear;
 }
 
@@ -254,15 +262,38 @@ body.pagina-equipo .equipo-panel>* {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-50%) translateX(28px) scale(0.94);
+    transform: translateX(28px) scale(0.94);
 }
 
 .muneco-lateral {
     width: 100%;
     height: auto;
     display: block;
-    max-width: 520px;
+    max-width: 320px;
     filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.28));
+}
+
+.btn-altacalidad {
+    position: fixed;
+    left: clamp(12px, 1.8vw, 24px);
+    bottom: clamp(60px, 8vh, 100px);
+    top: auto;
+    transform: none;
+    width: clamp(85px, 8.5vw, 135px);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: default;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 120ms linear, visibility 120ms linear, transform 120ms linear;
+}
+
+.imagen-altacalidad-lateral {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
 }
 
 .seccion-fondo {
@@ -396,13 +427,47 @@ body.pagina-equipo .equipo-panel>* {
     object-fit: contain;
 }
 
-.cartel-btn-3 { bottom: 2310px; left: 26%; --cartel-rotate: -7deg; }
-.cartel-btn-5 { bottom: 2090px; left: 74%; --cartel-rotate: 4deg; }
-.cartel-btn-7 { bottom: 1790px; left: 26%; --cartel-rotate: -3deg; }
-.cartel-btn-10 { bottom: 1030px; left: 26%; --cartel-rotate: -4deg; }
-.cartel-btn-12 { bottom: 680px; left: 74%; --cartel-rotate: 6deg; }
-.cartel-btn-14 { bottom: 430px; left: 26%; --cartel-rotate: -6deg; }
-.cartel-btn-15 { bottom: 280px; left: 20%; --cartel-rotate: 6deg; }
+.cartel-btn-3 {
+    bottom: 2310px;
+    left: 26%;
+    --cartel-rotate: -7deg;
+}
+
+.cartel-btn-5 {
+    bottom: 2090px;
+    left: 74%;
+    --cartel-rotate: 4deg;
+}
+
+.cartel-btn-7 {
+    bottom: 1790px;
+    left: 26%;
+    --cartel-rotate: -3deg;
+}
+
+.cartel-btn-10 {
+    bottom: 1030px;
+    left: 26%;
+    --cartel-rotate: -4deg;
+}
+
+.cartel-btn-12 {
+    bottom: 680px;
+    left: 74%;
+    --cartel-rotate: 6deg;
+}
+
+.cartel-btn-14 {
+    bottom: 430px;
+    left: 26%;
+    --cartel-rotate: -6deg;
+}
+
+.cartel-btn-15 {
+    bottom: 280px;
+    left: 20%;
+    --cartel-rotate: 6deg;
+}
 
 .cartel-base {
     position: absolute;
@@ -1338,8 +1403,8 @@ h1 {
     height: 100%;
     object-fit: cover;
     display: block;
-    transform: scale(1);
-    transition: transform 0.6s ease, opacity 0.6s ease;
+    transform: none;
+    transition: opacity 0.6s ease;
 }
 
 @media (max-width: 620px) {
@@ -1348,11 +1413,12 @@ h1 {
         height: 100%;
         object-fit: cover;
         object-position: center center;
+        transform: none;
     }
 }
 
 .splash-overlay.splash-visible .splash-image {
-    transform: scale(1.02);
+    transform: none;
 }
 
 /* clase temporal para desactivar transiciones en la entrada */
@@ -1682,10 +1748,10 @@ h1 {
 
     .btn-Biopochito {
         right: 0;
-        top: 42%;
-        bottom: auto;
-        transform: translateY(-50%);
-        width: clamp(210px, 34vw, 350px);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 55px);
+        top: auto;
+        transform: none;
+        width: clamp(190px, 36vw, 290px);
         z-index: 900;
     }
 
@@ -2379,12 +2445,22 @@ h1 {
 @media (max-width: 820px) {
     .btn-Biopochito {
         right: calc(env(safe-area-inset-right, 0px) - 8px);
-        top: 45%;
-        width: clamp(180px, 44vw, 280px);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 55px);
+        top: auto;
+        transform: none;
+        width: clamp(190px, 40vw, 290px);
     }
 
     .muneco-lateral {
-        max-width: 280px;
+        max-width: 290px;
+    }
+
+    .btn-altacalidad {
+        left: calc(env(safe-area-inset-left, 0px) + 8px);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+        top: auto;
+        transform: none;
+        width: clamp(115px, 22vw, 165px);
     }
 }
 
@@ -2395,7 +2471,13 @@ h1 {
     }
 
     .btn-Biopochito {
-        top: 49%;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 50px);
+        top: auto;
+    }
+
+    .btn-altacalidad {
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 12px);
+        top: auto;
     }
 
     .navbar {
@@ -2442,6 +2524,7 @@ h1 {
         height: 100%;
         object-fit: cover;
         object-position: center center;
+        transform: none;
     }
 
     .hero,
