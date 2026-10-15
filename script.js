@@ -2,14 +2,9 @@
 const modal = document.getElementById('modal-reproductor');
 const btnCerrar = document.getElementById('btn-cerrar');
 const modalImagen = document.getElementById('modal-imagen');
+const modalVideo = document.getElementById('modal-video');
 const modalTitulo = document.getElementById('modal-titulo');
 const modalDescripcion = document.getElementById('modal-descripcion');
-
-const audio = document.getElementById('reproductor-global');
-const btnIniciar = document.getElementById('btn-iniciar');
-const contenedorSecundario = document.getElementById('controles-reproduccion');
-const btnPausar = document.getElementById('btn-pausar');
-const btnReiniciar = document.getElementById('btn-reiniciar');
 
 const iconosEquipo = {
     rector: `
@@ -53,14 +48,18 @@ const equipoData = [
     { nombre: 'Mag. Iván Darío Aristizábal Henao', cargo: 'Decano Facultad de Ingeniería', tipo: 'edificio' },
     { nombre: 'Ing. José Gabriel Pérez Canencio', cargo: 'Docente - IGSCLAC', tipo: 'docente' },
     { nombre: 'Ing. Mary Luz Ojeda Solarte', cargo: 'Docente - IGSCLAC', tipo: 'docente' },
-    { nombre: 'Ing. Jorge Iván Tobar Cardozo', cargo: 'Docente asesor', tipo: 'asesor' },
+    { nombre: 'Ing. Jorge Iván Tobar Cardozo', cargo: 'Docente colaborador', tipo: 'colaborador' },
     { nombre: 'Ing. Alexandra Trujillo Zapata', cargo: 'Docente - IGSCLAC', tipo: 'docente' },
     { nombre: 'Dr. Jorge Enrique Guevara Bejarano', cargo: 'Docente - IGSCLAC', tipo: 'docente' },
     { nombre: 'Kelly Vanesa Ávila Pérez', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
     { nombre: 'Juan Fernando Ramírez Delgado', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
     { nombre: 'Juan David Salazar Riascos', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
-    { nombre: 'Cristian Alfonso Hoyos Gomez', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' }
+    { nombre: 'Cristian Alfonso Hoyos Gomez', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
+    { nombre: 'Daniela Gomez Rios', cargo: 'Estudiante desarrollador - IGSCLAC', tipo: 'estudiante' },
+    { nombre: 'Miguel Ángel Pérez Ojeda', cargo: 'Community manager', tipo: 'colaborador' },
+    { nombre: 'Jerónimo Taborda Quiñones', cargo: 'Colaborador', tipo: 'colaborador' },
 ];
+
 
 const equipoGrid = document.getElementById('equipo-grid');
 
@@ -68,76 +67,48 @@ const equipoGrid = document.getElementById('equipo-grid');
 document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito').forEach(botonLista => {
     botonLista.addEventListener('click', () => {
         // Extraer los datos guardados en el botón HTML
-        const archivoAudio = botonLista.getAttribute('data-audio');
         const titulo = botonLista.getAttribute('data-titulo');
         const descripcion = botonLista.getAttribute('data-desc');
         const imagenPreview = botonLista.getAttribute('data-preview-img');
+        const videoSrc = botonLista.getAttribute('data-video');
         const imagenBoton = botonLista.querySelector('img');
         const usaVistaLateral = botonLista.classList.contains('circulo-btn') || botonLista.classList.contains('cartel-btn');
         const usaPreviewFase = imagenPreview && imagenPreview.includes('Fases imagenes previ/');
 
         // Asignar los textos e incorporar la ruta del archivo .wav
         if (imagenBoton) {
-            modalImagen.src = imagenPreview || imagenBoton.getAttribute('src');
+            modalImagen.src = imagenPreview || imagenBoton.currentSrc || imagenBoton.src || imagenBoton.getAttribute('src');
             modalImagen.alt = imagenBoton.getAttribute('alt') || titulo;
+        }
+        if (modalVideo) {
+            modalVideo.pause();
+            modalVideo.removeAttribute('src');
+            modalVideo.load();
+            modalVideo.classList.toggle('oculto', !videoSrc);
+            modalImagen.parentElement.classList.toggle('oculto', Boolean(videoSrc));
+            if (videoSrc) {
+                modalVideo.src = videoSrc;
+                modalVideo.setAttribute('aria-label', `Video de ${titulo || 'la fase'}`);
+                modalVideo.load();
+            }
         }
         modal.querySelector('.modal-contenido').classList.toggle('modal-contenido-circular', usaVistaLateral);
         modalImagen.classList.toggle('modal-imagen-preview-fase', usaPreviewFase);
         modalImagen.parentElement.classList.toggle('modal-imagen-marco-preview-fase', usaPreviewFase);
         modalTitulo.textContent = titulo;
         modalDescripcion.textContent = descripcion;
-        audio.src = archivoAudio;
-
-        // Resetear la interfaz del reproductor interno
-        btnIniciar.textContent = "▶ Iniciar Audio";
-        btnIniciar.classList.remove('oculto');
-        contenedorSecundario.classList.add('oculto');
-        btnPausar.textContent = "⏸ Pausar";
-
         // Mostrar la ventana flotante quitando la clase 'oculto'
         modal.classList.remove('oculto');
     });
 });
 
-// Botón "Iniciar Audio"
-if (btnIniciar && audio) {
-    btnIniciar.addEventListener('click', () => {
-        audio.play();
-        btnIniciar.classList.add('oculto'); // Desaparece el botón de iniciar
-        contenedorSecundario.classList.remove('oculto'); // Muestra pausar y reiniciar
-    });
-}
+// Botón "Recorre el camino del café" -> lleva a la sección del recorrido
+const btnDescubrir = document.querySelector('.btn-descubrir');
+const seccionRecorrido = document.querySelector('.seccion-fondo');
 
-// Botón "Pausar / Reanudar"
-if (btnPausar && audio) {
-    btnPausar.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            btnPausar.textContent = "⏸ Pausar";
-        } else {
-            audio.pause();
-            btnPausar.textContent = "▶ Reanudar";
-        }
-    });
-}
-
-// Botón "Reiniciar"
-if (btnReiniciar && audio) {
-    btnReiniciar.addEventListener('click', () => {
-        audio.currentTime = 0; // Regresa el segundo del audio al inicio
-        audio.play();
-        if (btnPausar) {
-            btnPausar.textContent = "⏸ Pausar";
-        }
-    });
-}
-
-// Si el audio termina por completo
-if (audio && btnIniciar) {
-    audio.addEventListener('ended', () => {
-        btnIniciar.textContent = "▶ Volver a escuchar";
-        btnIniciar.classList.remove('oculto');
-        contenedorSecundario.classList.add('oculto');
+if (btnDescubrir && seccionRecorrido) {
+    btnDescubrir.addEventListener('click', () => {
+        seccionRecorrido.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 }
 
@@ -148,12 +119,18 @@ if (btnCerrar && modal) {
 }
 
 function resetearYcerrar() {
-    if (!audio || !modal) {
+    if (!modal) {
         return;
     }
 
-    audio.pause();
-    audio.currentTime = 0;
+    if (modalVideo) {
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+        modalVideo.removeAttribute('src');
+        modalVideo.load();
+        modalVideo.classList.add('oculto');
+        modalImagen.parentElement.classList.remove('oculto');
+    }
     modal.classList.add('oculto');
 }
 
@@ -183,13 +160,13 @@ function renderizarEquipo() {
     }).join('');
 }
 
-// --- SPLASH: entrada suave, visible 3s, salida suave ---
+// --- SPLASH: entrada suave, visible 5s, salida suave ---
 document.addEventListener('DOMContentLoaded', () => {
     const splash = document.getElementById('splash-overlay');
     if (!splash) return;
     const splashImage = splash.querySelector('.splash-image');
-    const splashPortraitSrc = 'imagenes/BIOPOCHITOINICIO vertical.jpg';
-    const splashLandscapeSrc = 'imagenes/BIOPOCHITOINICIO.jpg';
+    const splashPortraitSrc = 'imagenes/Biopochito vista movil.jpg';
+    const splashLandscapeSrc = 'imagenes/Logo inicial biopochito caf hd.jpg';
 
     if (splashImage) {
         const isPortrait = window.matchMedia('(orientation: portrait)').matches;
@@ -199,30 +176,61 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const visibleMs = 3000; // tiempo que permanece visible (ms)
+    const visibleMs = 5000;
+    const mostrarSplash = () => {
+        splash.classList.remove('splash-hidden');
+        splash.classList.add('splash-visible', 'no-transition');
 
-    // Mostrar inmediatamente SIN transición: usar clase temporal no-transition
-    splash.classList.remove('splash-hidden');
-    splash.classList.add('splash-visible', 'no-transition');
+        requestAnimationFrame(() => {
+            splash.classList.remove('no-transition');
+        });
 
-    // Forzar reflow y luego reactivar transiciones para la salida posterior
-    // (removemos la clase no-transition en el siguiente frame)
-    requestAnimationFrame(() => {
-        splash.classList.remove('no-transition');
-    });
+        setTimeout(() => {
+            splash.classList.remove('splash-visible');
+            splash.classList.add('splash-hidden');
 
-    // Mantener visible por visibleMs, luego iniciar salida (con transición)
-    setTimeout(() => {
-        splash.classList.remove('splash-visible');
-        splash.classList.add('splash-hidden');
+            splash.addEventListener('transitionend', () => {
+                if (splash.parentElement) splash.parentElement.removeChild(splash);
+            }, { once: true });
+        }, visibleMs);
+    };
 
-        splash.addEventListener('transitionend', () => {
-            if (splash && splash.parentElement) splash.parentElement.removeChild(splash);
-        }, { once: true });
-    }, visibleMs);
+    if (!splashImage || splashImage.complete) {
+        mostrarSplash();
+    } else {
+        splashImage.addEventListener('load', mostrarSplash, { once: true });
+        splashImage.addEventListener('error', mostrarSplash, { once: true });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', renderizarEquipo);
+
+// Desvanecer a Biopochito gradualmente al llegar a la última estación.
+const btnBiopochito = document.querySelector('.btn-Biopochito');
+const ultimaEstacion = document.querySelector('.circulo-btn-16');
+
+function actualizarVisibilidadBiopochito() {
+    if (!btnBiopochito || !ultimaEstacion) {
+        return;
+    }
+
+    const parteSuperiorEstacion = ultimaEstacion.getBoundingClientRect().top;
+    const inicioDesvanecimiento = window.innerHeight * 0.92;
+    const finalDesvanecimiento = window.innerHeight * 0.45;
+    const progreso = Math.min(1, Math.max(0,
+        (inicioDesvanecimiento - parteSuperiorEstacion) /
+        (inicioDesvanecimiento - finalDesvanecimiento)
+    ));
+
+    btnBiopochito.style.opacity = String(1 - progreso);
+    btnBiopochito.style.visibility = progreso >= 1 ? 'hidden' : 'visible';
+    btnBiopochito.style.pointerEvents = progreso >= 1 ? 'none' : 'auto';
+    btnBiopochito.style.transform = `translateY(-50%) translateX(${28 * progreso}px) scale(${1 - (0.06 * progreso)})`;
+}
+
+window.addEventListener('scroll', actualizarVisibilidadBiopochito, { passive: true });
+window.addEventListener('resize', actualizarVisibilidadBiopochito);
+actualizarVisibilidadBiopochito();
 
 // --- Efecto de navbar transparente al hacer scroll ---
 const navbar = document.querySelector('.navbar');
