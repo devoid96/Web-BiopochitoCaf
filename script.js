@@ -64,7 +64,17 @@ const equipoData = [
 
 const equipoGrid = document.getElementById('equipo-grid');
 
-// Escuchar clics en los elementos de la lista, los botones circulares y los botones de carteles
+// --- Audio de bienvenida al presionar a Biopochito (se abre el modal Y suena el audio) ---
+const audioBienvenida = new Audio('videosbiopocho/Audio Bienvenida.ogg');
+const btnBiopochitoAudio = document.querySelector('.btn-Biopochito');
+if (btnBiopochitoAudio) {
+    btnBiopochitoAudio.addEventListener('click', () => {
+        audioBienvenida.currentTime = 0;
+        audioBienvenida.play().catch(() => {});
+    });
+}
+
+// Escuchar clics en los elementos de la lista, los botones circulares, botones de carteles y Biopochito
 document.querySelectorAll('.btn-item, .circulo-btn, .cartel-btn, .btn-Biopochito').forEach(botonLista => {
     botonLista.addEventListener('click', () => {
         // Extraer los datos guardados en el botón HTML
@@ -131,6 +141,11 @@ function resetearYcerrar() {
         modalVideo.load();
         modalVideo.classList.add('oculto');
         modalImagen.parentElement.classList.remove('oculto');
+    }
+    // Detener el audio de Biopochito si estaba sonando
+    if (audioBienvenida) {
+        audioBienvenida.pause();
+        audioBienvenida.currentTime = 0;
     }
     modal.classList.add('oculto');
 }

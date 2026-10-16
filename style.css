@@ -2562,3 +2562,293 @@ h1 {
         margin-right: -20px;
     }
 }
+
+/* ===== SECCIÓN DE DESCARGA DE PDF (ESTILO GUÍA BIOPOCHITO) ===== */
+.seccion-descarga {
+    position: relative;
+    max-width: 850px;
+    width: 100%;
+    margin: 12px auto 48px;
+    padding: clamp(38px, 5.5vw, 62px) clamp(20px, 4.5vw, 56px);
+    background-color: #ffffff;
+    /* Cuadrícula punteada idéntica a la imagen de referencia */
+    background-image: radial-gradient(rgba(31, 107, 58, 0.18) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    border-radius: 36px;
+    border: 1px solid rgba(31, 107, 58, 0.12);
+    box-shadow: 0 18px 45px rgba(18, 48, 28, 0.12), 0 3px 10px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    overflow: hidden;
+}
+
+/* --- Formas orgánicas y translúcidas de los bordes (como en la imagen) --- */
+.forma-decorativa {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Círculo verde menta superior izquierdo */
+.forma-decorativa--tl-circulo {
+    top: 24px;
+    left: 24px;
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(195, 218, 203, 0.45);
+}
+
+/* Gota / hoja verde menta lateral izquierda */
+.forma-decorativa--ml-gota {
+    top: 48%;
+    left: 30px;
+    width: 56px;
+    height: 78px;
+    border-radius: 0 65% 65% 65%;
+    transform: translateY(-50%) rotate(-45deg);
+    background: rgba(195, 218, 203, 0.52);
+}
+
+/* Esquina verde menta inferior izquierda */
+.forma-decorativa--bl-esquina {
+    bottom: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    border-radius: 0 100% 0 0;
+    background: rgba(195, 218, 203, 0.40);
+}
+
+/* Esquina durazno superior derecha */
+.forma-decorativa--tr-esquina {
+    top: 0;
+    right: 0;
+    width: 86px;
+    height: 86px;
+    border-radius: 0 0 0 100%;
+    background: rgba(248, 214, 188, 0.52);
+}
+
+/* Gota / hoja durazno lateral derecha */
+.forma-decorativa--mr-gota {
+    top: 45%;
+    right: 32px;
+    width: 56px;
+    height: 78px;
+    border-radius: 65% 0 65% 65%;
+    transform: translateY(-50%) rotate(45deg);
+    background: rgba(248, 214, 188, 0.54);
+}
+
+/* Esquina durazno inferior derecha */
+.forma-decorativa--br-esquina {
+    bottom: 0;
+    right: 0;
+    width: 78px;
+    height: 78px;
+    border-radius: 100% 0 0 0;
+    background: rgba(248, 214, 188, 0.42);
+}
+
+/* --- Contenido de la tarjeta --- */
+.descarga-card-body {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Icono verde de documento en marco cuadrado redondeado */
+.descarga-icono-doc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+    background: #f1f8f3;
+    border: 1.5px solid #d5ecd8;
+    box-shadow: 0 6px 16px rgba(31, 107, 58, 0.08);
+    margin-bottom: 20px;
+    color: #1f6b3a;
+    transition: transform 0.25s ease;
+}
+
+.descarga-icono-doc svg {
+    width: 32px;
+    height: 32px;
+}
+
+.seccion-descarga:hover .descarga-icono-doc {
+    transform: translateY(-3px) scale(1.04);
+}
+
+/* Título verde oscuro idéntico a la imagen */
+.descarga-titulo {
+    font-size: clamp(1.5rem, 3.8vw, 2.25rem);
+    font-weight: 800;
+    color: #0f3821;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Línea divisoria decorativa verde y naranja */
+.descarga-linea-decorativa {
+    width: 64px;
+    height: 4.5px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #1f6b3a 45%, #f57c00 55%);
+    margin: 14px auto 16px;
+}
+
+/* Subtítulo */
+.descarga-subtitulo {
+    font-size: clamp(0.96rem, 1.8vw, 1.08rem);
+    color: #4f6154;
+    line-height: 1.6;
+    margin: 0 auto 24px;
+    max-width: 560px;
+}
+
+.descarga-subtitulo-destacado {
+    font-weight: 600;
+    color: #24352d;
+}
+
+/* --- Contenedor del botón con hojas translúcidas --- */
+.descarga-boton-contenedor {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    position: relative;
+    margin-top: 4px;
+}
+
+/* Hojas translúcidas a los lados del botón */
+.hoja-transluz {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    animation: hoja-flotar 3.5s ease-in-out infinite alternate;
+}
+
+.hoja-transluz--izq {
+    transform-origin: bottom right;
+}
+
+.hoja-transluz--der {
+    transform-origin: bottom left;
+    animation-delay: -1.75s;
+}
+
+.hoja-transluz svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.05));
+}
+
+@keyframes hoja-flotar {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-4px) rotate(4deg);
+    }
+}
+
+.descarga-boton-contenedor:hover .hoja-transluz--izq {
+    transform: translateY(-3px) scale(1.08) rotate(-6deg);
+}
+
+.descarga-boton-contenedor:hover .hoja-transluz--der {
+    transform: translateY(-3px) scale(1.08) rotate(6deg);
+}
+
+/* Botón naranja idéntico a la imagen */
+.btn-descargar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff8400, #f56d00);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 13px 36px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 10px 26px rgba(245, 122, 0, 0.44);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    position: relative;
+}
+
+.btn-descargar:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 34px rgba(245, 122, 0, 0.55);
+    background: linear-gradient(135deg, #ff921a, #f87400);
+}
+
+.btn-descargar:active {
+    transform: translateY(0) scale(0.99);
+    box-shadow: 0 6px 16px rgba(245, 122, 0, 0.35);
+}
+
+.btn-descargar-icono {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 620px) {
+    .seccion-descarga {
+        border-radius: 24px;
+        padding: 34px 18px;
+        margin-bottom: 30px;
+    }
+
+    .forma-decorativa--tl-circulo {
+        width: 44px;
+        height: 44px;
+        top: 14px;
+        left: 14px;
+    }
+
+    .forma-decorativa--tr-esquina {
+        width: 50px;
+        height: 50px;
+    }
+
+    .forma-decorativa--ml-gota,
+    .forma-decorativa--mr-gota {
+        display: none; /* Se ocultan en pantallas muy angostas para no superponerse con el texto */
+    }
+
+    .descarga-titulo {
+        font-size: 1.35rem;
+    }
+
+    .descarga-boton-contenedor {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .hoja-transluz {
+        width: 34px;
+        height: 34px;
+    }
+
+    .btn-descargar {
+        flex: 1;
+        padding: 13px 20px;
+        font-size: 0.98rem;
+    }
+}
