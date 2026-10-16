@@ -70,7 +70,7 @@ const btnBiopochitoAudio = document.querySelector('.btn-Biopochito');
 if (btnBiopochitoAudio) {
     btnBiopochitoAudio.addEventListener('click', () => {
         audioBienvenida.currentTime = 0;
-        audioBienvenida.play().catch(() => {});
+        audioBienvenida.play().catch(() => { });
     });
 }
 
@@ -221,21 +221,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', renderizarEquipo);
 
-// Desvanecer a Biopochito y botón lateral gradualmente al llegar a la última estación.
+// Desvanecer a Biopochito y botón lateral gradualmente al llegar al footer.
 const btnBiopochito = document.querySelector('.btn-Biopochito');
 const btnAltacalidad = document.querySelector('.btn-altacalidad');
-const ultimaEstacion = document.querySelector('.circulo-btn-16');
+const footer = document.querySelector('.footer-institucional') || document.querySelector('footer');
 
 function actualizarVisibilidadBiopochito() {
-    if (!ultimaEstacion) {
+    if (!footer) {
         return;
     }
 
-    const parteSuperiorEstacion = ultimaEstacion.getBoundingClientRect().top;
-    const inicioDesvanecimiento = window.innerHeight * 0.92;
-    const finalDesvanecimiento = window.innerHeight * 0.45;
+    const parteSuperiorFooter = footer.getBoundingClientRect().top;
+    const inicioDesvanecimiento = window.innerHeight;
+    const finalDesvanecimiento = window.innerHeight * 0.65;
     const progreso = Math.min(1, Math.max(0,
-        (inicioDesvanecimiento - parteSuperiorEstacion) /
+        (inicioDesvanecimiento - parteSuperiorFooter) /
         (inicioDesvanecimiento - finalDesvanecimiento)
     ));
 
